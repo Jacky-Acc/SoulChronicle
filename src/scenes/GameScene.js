@@ -1,8 +1,11 @@
 import Player from "../entities/Player.js";
 
+import WorldMap from "../world/WorldMap.js";
 
 
-export default class GameScene{
+
+export default class GameScene {
+
 
 
     constructor(game){
@@ -14,29 +17,42 @@ export default class GameScene{
         this.player = null;
 
 
+        this.world = null;
+
+
     }
 
 
 
 
 
-   init(){
-
-    alert("GAME SCENE LOADED");
+    init(){
 
 
-    console.log(
-        "World Loaded"
-    );
+        console.log(
+            "World Map Loaded"
+        );
 
 
-    this.player =
-    new Player(
-        400,
-        300
-    );
 
-}
+        this.world =
+        new WorldMap();
+
+
+
+        this.player =
+        new Player(
+
+            150,
+
+            150
+
+        );
+
+
+    }
+
+
 
 
 
@@ -54,16 +70,12 @@ export default class GameScene{
 
 
 
+
     render(ctx){
 
 
 
-        // 背景
-
-        ctx.fillStyle="#3a7d44";
-
-
-        ctx.fillRect(
+        ctx.clearRect(
 
             0,
 
@@ -77,37 +89,7 @@ export default class GameScene{
 
 
 
-        // 地面装饰
-
-        ctx.fillStyle="#2d5f34";
-
-
-        for(
-            let x=0;
-            x<this.game.canvas.width;
-            x+=64
-        ){
-
-
-            for(
-                let y=0;
-                y<this.game.canvas.height;
-                y+=64
-            ){
-
-
-                ctx.fillRect(
-                    x,
-                    y,
-                    2,
-                    2
-                );
-
-
-            }
-
-
-        }
+        this.world.render(ctx);
 
 
 
@@ -116,6 +98,8 @@ export default class GameScene{
 
 
     }
+
+
 
 
 
