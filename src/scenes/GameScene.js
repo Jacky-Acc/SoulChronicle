@@ -1,11 +1,22 @@
+import Player from "../entities/Player.js";
+
+
+
 export default class GameScene{
 
 
     constructor(game){
 
+
         this.game = game;
 
+
+        this.player = null;
+
+
     }
+
+
 
 
 
@@ -13,53 +24,95 @@ export default class GameScene{
 
 
         console.log(
-            "Game Started"
+            "World Loaded"
+        );
+
+
+
+        this.player =
+        new Player(
+            400,
+            300
         );
 
 
     }
+
+
 
 
 
     update(deltaTime){
 
 
+        this.player.update();
+
 
     }
+
+
 
 
 
     render(ctx){
 
 
-        ctx.fillStyle="#1b1b1b";
+
+        // 背景
+
+        ctx.fillStyle="#3a7d44";
 
 
         ctx.fillRect(
 
             0,
+
             0,
+
             this.game.canvas.width,
+
             this.game.canvas.height
 
         );
 
 
 
-        ctx.fillStyle="white";
+        // 地面装饰
+
+        ctx.fillStyle="#2d5f34";
 
 
-        ctx.font="40px Arial";
+        for(
+            let x=0;
+            x<this.game.canvas.width;
+            x+=64
+        ){
 
 
-        ctx.fillText(
+            for(
+                let y=0;
+                y<this.game.canvas.height;
+                y+=64
+            ){
 
-            "Welcome to SoulChronicle",
 
-            80,
-            120
+                ctx.fillRect(
+                    x,
+                    y,
+                    2,
+                    2
+                );
 
-        );
+
+            }
+
+
+        }
+
+
+
+        this.player.render(ctx);
+
 
 
     }
