@@ -53,10 +53,6 @@ export default class MainMenuScene{
     render(){
 
 
-
-        // 3D模式下不使用Canvas绘制
-
-
     }
 
 
