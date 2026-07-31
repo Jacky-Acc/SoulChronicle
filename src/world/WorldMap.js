@@ -1,74 +1,24 @@
 import Tile from "./Tile.js";
 
 
-
 export default class WorldMap {
-
 
 
     constructor(){
 
 
-
         this.tileSize = 64;
 
 
+        this.width = 100;
 
-        this.map = [
-
-            [
-                "grass",
-                "grass",
-                "grass",
-                "tree",
-                "grass"
-            ],
+        this.height = 100;
 
 
-            [
-                "grass",
-                "road",
-                "road",
-                "road",
-                "grass"
-            ],
+        this.tiles = [];
 
 
-            [
-                "grass",
-                "road",
-                "grass",
-                "water",
-                "water"
-            ],
-
-
-            [
-                "tree",
-                "grass",
-                "grass",
-                "grass",
-                "grass"
-            ],
-
-
-            [
-                "grass",
-                "grass",
-                "tree",
-                "grass",
-                "grass"
-            ]
-
-        ];
-
-
-
-        this.tiles=[];
-
-
-
-        this.create();
+        this.generate();
 
 
     }
@@ -76,14 +26,12 @@ export default class WorldMap {
 
 
 
-
-    create(){
-
+    generate(){
 
 
         for(
-            let y=0;
-            y<this.map.length;
+            let y = 0;
+            y < this.height;
             y++
         ){
 
@@ -93,18 +41,19 @@ export default class WorldMap {
 
 
             for(
-                let x=0;
-                x<this.map[y].length;
+                let x = 0;
+                x < this.width;
                 x++
             ){
 
 
+                let type =
+                this.createTerrain();
+
+
+
                 row.push(
-
-                    new Tile(
-                        this.map[y][x]
-                    )
-
+                    new Tile(type)
                 );
 
 
@@ -124,6 +73,49 @@ export default class WorldMap {
 
 
 
+    createTerrain(){
+
+
+        let random =
+        Math.random();
+
+
+
+        if(random < 0.1){
+
+
+            return "water";
+
+
+        }
+
+
+        if(random < 0.25){
+
+
+            return "tree";
+
+
+        }
+
+
+        if(random < 0.35){
+
+
+            return "road";
+
+
+        }
+
+
+        return "grass";
+
+
+    }
+
+
+
+
 
 
     render(ctx){
@@ -132,17 +124,17 @@ export default class WorldMap {
 
         for(
             let y=0;
-            y<this.tiles.length;
+            y<this.height;
             y++
         ){
 
 
+
             for(
                 let x=0;
-                x<this.tiles[y].length;
+                x<this.width;
                 x++
             ){
-
 
 
                 this.tiles[y][x].render(
@@ -156,7 +148,6 @@ export default class WorldMap {
                     this.tileSize
 
                 );
-
 
 
             }

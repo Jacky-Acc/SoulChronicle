@@ -17,6 +17,8 @@ export default class Camera{
 
 
 
+
+
     follow(target){
 
 
@@ -29,6 +31,15 @@ export default class Camera{
         this.y =
         target.y -
         this.game.canvas.height / 2;
+
+
+
+        if(this.x < 0)
+            this.x = 0;
+
+
+        if(this.y < 0)
+            this.y = 0;
 
 
 
