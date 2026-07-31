@@ -11,12 +11,11 @@ export default class Renderer3D{
         this.renderer =
         new THREE.WebGLRenderer({
 
-            canvas:canvas,
+            canvas: canvas,
 
             antialias:true
 
         });
-
 
 
         this.renderer.setSize(
@@ -35,8 +34,6 @@ export default class Renderer3D{
 
 
 
-
-
     render(scene,camera){
 
 
@@ -50,7 +47,6 @@ export default class Renderer3D{
 
 
     }
-
 
 
 }

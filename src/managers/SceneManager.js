@@ -52,19 +52,19 @@ export default class SceneManager {
 
 
 
-    render(ctx){
+   render(){
 
 
-        if(this.currentScene){
+    if(this.currentScene){
 
 
-            this.currentScene.render(ctx);
-
-
-        }
+        this.currentScene.render();
 
 
     }
+
+
+}
 
 
 

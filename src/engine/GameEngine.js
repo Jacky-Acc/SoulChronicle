@@ -9,16 +9,12 @@ export default class GameEngine{
 
         this.canvas = canvas;
 
-        this.ctx = canvas.getContext("2d");
-
 
         this.running = false;
 
 
         this.lastTime = 0;
 
-
-        // 场景管理器
 
         this.sceneManager =
         new SceneManager(this);
@@ -40,6 +36,8 @@ export default class GameEngine{
 
 
     }
+
+
 
 
 
@@ -76,6 +74,8 @@ export default class GameEngine{
 
 
 
+
+
     update(deltaTime){
 
 
@@ -88,16 +88,15 @@ export default class GameEngine{
 
 
 
+
+
     render(){
 
 
-        this.sceneManager.render(
-            this.ctx
-        );
+        this.sceneManager.render();
 
 
     }
-
 
 
 }
