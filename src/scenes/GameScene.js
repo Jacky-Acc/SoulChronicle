@@ -20,23 +20,23 @@ export default class GameScene{
 
 
 
-    init(){
+   init(){
+
+    alert("GAME SCENE LOADED");
 
 
-        console.log(
-            "World Loaded"
-        );
+    console.log(
+        "World Loaded"
+    );
 
 
+    this.player =
+    new Player(
+        400,
+        300
+    );
 
-        this.player =
-        new Player(
-            400,
-            300
-        );
-
-
-    }
+}
 
 
 
