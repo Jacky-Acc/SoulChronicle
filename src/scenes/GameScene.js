@@ -2,6 +2,8 @@ import Player from "../entities/Player.js";
 
 import WorldMap from "../world/WorldMap.js";
 
+import Camera from "../engine/Camera.js";
+
 
 
 export default class GameScene {
@@ -20,6 +22,9 @@ export default class GameScene {
         this.world = null;
 
 
+        this.camera = null;
+
+
     }
 
 
@@ -29,8 +34,9 @@ export default class GameScene {
     init(){
 
 
+
         console.log(
-            "World Map Loaded"
+            "Camera System Loaded"
         );
 
 
@@ -43,9 +49,18 @@ export default class GameScene {
         this.player =
         new Player(
 
-            150,
+            300,
 
-            150
+            300
+
+        );
+
+
+
+        this.camera =
+        new Camera(
+
+            this.game
 
         );
 
@@ -61,10 +76,21 @@ export default class GameScene {
     update(deltaTime){
 
 
+
         this.player.update();
 
 
+
+        this.camera.follow(
+
+            this.player
+
+        );
+
+
+
     }
+
 
 
 
@@ -89,6 +115,12 @@ export default class GameScene {
 
 
 
+        // 开启摄像机
+
+        this.camera.apply(ctx);
+
+
+
         this.world.render(ctx);
 
 
@@ -97,8 +129,13 @@ export default class GameScene {
 
 
 
-    }
+        // 恢复画布
 
+        this.camera.reset(ctx);
+
+
+
+    }
 
 
 
