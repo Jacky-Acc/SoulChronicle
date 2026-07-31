@@ -1,17 +1,9 @@
-console.log("SOULCHRONICLE START");
+import GameEngine from "./src/engine/GameEngine.js";
+
+import LoadingScene from "./src/scenes/LoadingScene.js";
 
 
-import GameEngine 
-from "./src/engine/GameEngine.js";
-
-
-import LoadingScene 
-from "./src/scenes/LoadingScene.js";
-
-
-
-const canvas =
-document.getElementById(
+const canvas = document.getElementById(
     "gameCanvas"
 );
 
@@ -20,12 +12,9 @@ document.getElementById(
 function resizeCanvas(){
 
 
-    canvas.width =
-    window.innerWidth;
+    canvas.width = window.innerWidth;
 
-
-    canvas.height =
-    window.innerHeight;
+    canvas.height = window.innerHeight;
 
 
 }
@@ -43,8 +32,7 @@ resizeCanvas();
 
 
 
-const game =
-new GameEngine(canvas);
+const game = new GameEngine(canvas);
 
 
 
