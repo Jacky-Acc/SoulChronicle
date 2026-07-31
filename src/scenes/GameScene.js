@@ -1,28 +1,29 @@
-import Player from "../entities/Player.js";
-
-import WorldMap from "../world/WorldMap.js";
-
-import Camera from "../engine/Camera.js";
+import * as THREE from 
+"https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js";
 
 
+import Renderer3D from "../engine/Renderer3D.js";
 
-export default class GameScene {
+import Camera3D from "../engine/Camera3D.js";
 
+
+
+export default class GameScene{
 
 
     constructor(game){
 
 
-        this.game = game;
+        this.game=game;
 
 
-        this.player = null;
+        this.scene=null;
 
 
-        this.world = null;
+        this.renderer=null;
 
 
-        this.camera = null;
+        this.camera=null;
 
 
     }
@@ -34,34 +35,107 @@ export default class GameScene {
     init(){
 
 
-
         console.log(
-            "Camera System Loaded"
+            "3D WORLD LOADED"
         );
 
 
 
-        this.world =
-        new WorldMap();
+        this.scene =
+        new THREE.Scene();
 
 
 
-        this.player =
-        new Player(
+        this.scene.background =
+        new THREE.Color(
+            0x87ceeb
+        );
 
-            300,
 
-            300
+
+        // 光源
+
+        const light =
+        new THREE.DirectionalLight(
+
+            0xffffff,
+
+            1
+
+        );
+
+
+        light.position.set(
+            5,
+            10,
+            5
+        );
+
+
+        this.scene.add(light);
+
+
+
+        // 地面
+
+        const geometry =
+        new THREE.PlaneGeometry(
+
+            50,
+
+            50
+
+        );
+
+
+
+        const material =
+        new THREE.MeshStandardMaterial({
+
+            color:0x228B22
+
+        });
+
+
+
+        const ground =
+        new THREE.Mesh(
+
+            geometry,
+
+            material
+
+        );
+
+
+
+        ground.rotation.x =
+        -Math.PI/2;
+
+
+
+        this.scene.add(
+            ground
+        );
+
+
+
+        this.renderer =
+        new Renderer3D(
+
+            this.game.canvas
 
         );
 
 
 
         this.camera =
-        new Camera(
+        new Camera3D();
 
-            this.game
 
+
+        this.scene.add(
+            this.camera.camera
         );
 
 
@@ -71,21 +145,7 @@ export default class GameScene {
 
 
 
-
-
-    update(deltaTime){
-
-
-
-        this.player.update();
-
-
-
-        this.camera.follow(
-
-            this.player
-
-        );
+    update(){
 
 
 
@@ -95,48 +155,19 @@ export default class GameScene {
 
 
 
+    render(){
 
 
-    render(ctx){
+        this.renderer.render(
 
+            this.scene,
 
-
-        ctx.clearRect(
-
-            0,
-
-            0,
-
-            this.game.canvas.width,
-
-            this.game.canvas.height
+            this.camera.camera
 
         );
 
 
-
-        // 开启摄像机
-
-        this.camera.apply(ctx);
-
-
-
-        this.world.render(ctx);
-
-
-
-        this.player.render(ctx);
-
-
-
-        // 恢复画布
-
-        this.camera.reset(ctx);
-
-
-
     }
-
 
 
 
