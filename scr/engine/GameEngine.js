@@ -1,3 +1,6 @@
+import SceneManager from "../managers/SceneManager.js";
+
+
 export default class GameEngine{
 
 
@@ -13,6 +16,12 @@ export default class GameEngine{
 
 
         this.lastTime = 0;
+
+
+        // 场景管理器
+
+        this.sceneManager =
+        new SceneManager(this);
 
 
     }
@@ -53,6 +62,7 @@ export default class GameEngine{
 
         this.update(deltaTime);
 
+
         this.render();
 
 
@@ -69,7 +79,9 @@ export default class GameEngine{
     update(deltaTime){
 
 
-        // 游戏逻辑更新
+        this.sceneManager.update(
+            deltaTime
+        );
 
 
     }
@@ -79,31 +91,8 @@ export default class GameEngine{
     render(){
 
 
-        this.ctx.fillStyle="#111";
-
-
-        this.ctx.fillRect(
-
-            0,
-            0,
-            this.canvas.width,
-            this.canvas.height
-
-        );
-
-
-        this.ctx.fillStyle="#fff";
-
-        this.ctx.font="40px Arial";
-
-
-        this.ctx.fillText(
-
-            "SOULCHRONICLE",
-
-            50,
-            80
-
+        this.sceneManager.render(
+            this.ctx
         );
 
 
