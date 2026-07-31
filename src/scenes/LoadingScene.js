@@ -8,9 +8,9 @@ export default class LoadingScene{
 
         this.game = game;
 
-        this.progress = 0;
+        this.timer = 0;
 
-        this.finished = false;
+        this.loaded = false;
 
     }
 
@@ -20,48 +20,34 @@ export default class LoadingScene{
 
 
         console.log(
-            "Loading Start"
+            "Loading..."
         );
 
 
     }
+
 
 
 
     update(deltaTime){
 
 
-        if(this.progress < 100){
+        this.timer += deltaTime;
 
 
-            this.progress +=
-            deltaTime * 0.05;
+
+        if(this.timer > 1000 && !this.loaded){
 
 
-        }
-        else{
+            this.loaded = true;
 
 
-            if(!this.finished){
 
+            this.game.sceneManager.changeScene(
 
-                this.finished = true;
+                new MainMenuScene(this.game)
 
-
-                setTimeout(()=>{
-
-
-                    this.game.sceneManager.changeScene(
-
-                        new MainMenuScene(this.game)
-
-                    );
-
-
-                },500);
-
-
-            }
+            );
 
 
         }
@@ -71,53 +57,12 @@ export default class LoadingScene{
 
 
 
-    render(ctx){
 
 
-        ctx.fillStyle="#050505";
+    render(){
 
 
-        ctx.fillRect(
-
-            0,
-            0,
-            this.game.canvas.width,
-            this.game.canvas.height
-
-        );
-
-
-
-        ctx.fillStyle="white";
-
-
-        ctx.font="60px Arial";
-
-
-        ctx.fillText(
-
-            "SOULCHRONICLE",
-
-            80,
-            200
-
-        );
-
-
-
-        ctx.font="25px Arial";
-
-
-        ctx.fillText(
-
-            "Loading... "
-            + Math.floor(this.progress)
-            +"%",
-
-            100,
-            280
-
-        );
+        // 3D模式不使用2D绘制
 
 
     }
