@@ -8,13 +8,6 @@ from "./src/engine/GameEngine.js";
 import LoadingScene 
 from "./src/scenes/LoadingScene.js";
 
-import GameEngine 
-from "./src/engine/GameEngine.js";
-
-
-import LoadingScene 
-from "./src/scenes/LoadingScene.js";
-
 
 
 const canvas =
